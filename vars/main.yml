@@ -1,0 +1,5 @@
+---
+php_pools_conf_files_path: "{{ php_conf_files_path }}sites-enabled/"
+
+compiled_conf_files_path: "{{ conf_file_path + php_conf_files_path}}"
+compiled_pools_conf_files_path: "{{ conf_file_path + php_pools_conf_files_path}}"

@@ -1,0 +1,60 @@
+{{ ansible_managed | comment(decoration="; ") }}
+
+[{{pool_alias}}]
+listen = 0.0.0.0:{{pool.port}}
+
+user = {{pool.user}}
+group = {{pool.group}}
+
+request_terminate_timeout = {{pool.request_terminate_timeout}}
+
+{{ 'Proccess manager' | comment(decoration="; ") }}
+pm = {{pool.pm.strategy}}
+pm.max_children = {{pool.pm.max_children}}
+pm.start_servers = {{pool.pm.start_servers}}
+pm.min_spare_servers = {{pool.pm.min_spare_servers}}
+pm.max_spare_servers = {{pool.pm.max_spare_servers}}
+pm.max_requests = {{pool.pm.max_requests}}
+pm.status_path = /status/{{pool_alias}}
+
+{{ 'Proccess' | comment(decoration="; ") }}
+process.priority = {{pool.process.priority}}
+process.dumpable = {{pool.process.dumpable}}
+
+
+rlimit_files = {{pool.rlimit_files}}
+security.limit_extensions = {{ pool.security.limit_extensions | join(' ')}}
+
+ping.path = /ping/{{ pool_alias }}
+ping.response = {{pool.ping.response}}
+
+{{ 'Environment' | comment(decoration="; ") }}
+clear_env = {{ pool.clear_env}}
+env[HOSTNAME] = $HOSTNAME
+env[PATH] = /usr/local/bin:/usr/bin:/bin
+env[TMP] = /tmp
+env[TMPDIR] = /tmp
+env[TEMP] = /tmp
+{% for env_variable in pool.env_variables | default([]) | flatten %}
+env[{{env_variable}}] = ${{env_variable}}
+{% endfor %}
+
+{{ 'Admin flags' | comment(decoration="; ") }}
+{% for flag_name, flag_value in pool.admin_flags.items() %}
+php_admin_flag[{{flag_name}}] = {{flag_value}}
+{% endfor %}
+
+{{ 'Flags' | comment(decoration="; ") }}
+{% for flag_name, flag_value in pool.flags.items() %}
+php_flag[{{flag_name}}] = {{flag_value}}
+{% endfor %}
+
+{{ 'Admin values' | comment(decoration="; ") }}
+{% for value_name, value in pool.admin_values.items() %}
+php_admin_value[{{value_name}}] = {{value}}
+{% endfor %}
+
+{{ 'Values' | comment(decoration="; ") }}
+{% for value_name, value in pool.val.items() %}
+php_value[{{value_name}}] = {{value}}
+{% endfor %}

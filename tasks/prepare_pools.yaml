@@ -1,0 +1,21 @@
+---
+- name: Create a directory if it does not exist
+  file:
+    path: "{{ compiled_pools_conf_files_path }}"
+    state: directory
+    mode: '0750'
+
+- name: Prepare php-fpm www pool conffile
+  template:
+    src: "templates/pool.d/www.conf.j2"
+    dest: "{{ compiled_conf_files_path }}/www.conf"
+    mode: "u=r,g=r"
+
+- name: Inlcude prepare pool task
+  include_tasks: prepare_pool/prepare_pool.yaml
+  vars:
+    pool: "{{ default_pools_params | combine(pool_params.value) }}"
+    pool_alias: "{{ pool_params.key }}"
+  loop: "{{ pools_params | dict2items }}"
+  loop_control:
+    loop_var: pool_params

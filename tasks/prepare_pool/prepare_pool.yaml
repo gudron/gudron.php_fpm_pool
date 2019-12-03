@@ -1,0 +1,9 @@
+---
+- debug:
+    msg: "{{ pool }}"
+
+- name: Prepare php-fpm pool.d config files
+  template:
+    src: "templates/pool.d/sites-enabled/pool.conf.j2"
+    dest: "{{ compiled_pools_conf_files_path }}/{{ pool_alias }}.conf"
+    mode: "u=r,g=r"

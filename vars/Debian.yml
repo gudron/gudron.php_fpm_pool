@@ -1,0 +1,2 @@
+---
+php_conf_files_path: /etc/php/{{ php_version }}/fpm/pool.d/
