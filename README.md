@@ -107,6 +107,23 @@ Role Variables
 
     Supported variables: [defaults/main.yml](defaults/main.yml).
 
+Instalation
+-----------
+
+Add **gudron.php_fpm_pool** role to your *requirements* file.
+
+```yaml
+  - src: git@github.com:gudron/gudron.php_fpm_pool.git
+    scm: git
+    version: master
+```
+
+Install roles via **ansible-galaxy** tool.
+
+```bash
+ansible-galaxy install -p roles -r requirements.yml
+```
+
 Example Playbook
 ----------------
 
