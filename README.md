@@ -77,7 +77,6 @@ Role Variables
       * `response: string`
         This directive may be used to customize the response to a ping request. The response is formatted as text/plain with a 200 response code. [Official php-fpm documentation](https://www.php.net/manual/en/install.fpm.configuration.php#ping.response).
 
-
     * `request_terminate_timeout: string`
       The timeout for serving a single request after which the worker process will be killed. [Official php-fpm documentation](https://www.php.net/manual/en/install.fpm.configuration.php#request-terminate-timeout).
 
