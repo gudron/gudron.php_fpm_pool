@@ -26,7 +26,7 @@ default_pools_params:
     max_requests: 64
   process:
     priority: 2
-    dumpable: false
+    dumpable: False
   security:
     limit_extensions:
       - .php
@@ -39,9 +39,9 @@ default_pools_params:
   request_terminate_timeout: 45s
   request_slowlog_timeout: 42s
   rlimit_files: 1024
-  clear_env: true
-  catch_workers_output: false
-  decorate_workers_output: true
+  clear_env: True
+  catch_workers_output: False
+  decorate_workers_output: True
   admin_flags:
     log_errors: "On"
     short_open_tag: "On"
@@ -64,7 +64,6 @@ default_pools_params:
     date.timezone: Etc/UTC
   ping:
     response: pong
-  # TODO: add support to chroot/chdir options
 
 pools_params:
   exmaple_pool_1:
