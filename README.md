@@ -104,7 +104,7 @@ Role Variables
   * `disabled_functions_params: list`
     List of default disabled functions. [Official php-fpm documentation](https://www.php.net/manual/en/ini.core.php#ini.disable-functions).
 
-    Supported variables: [defaults/main/ssl.yml](defaults/main/ssl.yml).
+    Supported variables: [defaults/main.yml](defaults/main.yml).
 
 Example Playbook
 ----------------
