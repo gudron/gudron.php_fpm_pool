@@ -6,8 +6,6 @@ Role for creating php-fpm pools config files.
 Role Variables
 --------------
 
-### General variables
-
   * `php_version: string`
     The php version for which you want to generate the configuration.
 
