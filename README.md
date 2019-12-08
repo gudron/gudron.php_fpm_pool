@@ -21,7 +21,10 @@ Role Variables
       Pool worker operation system user. [Official php-fpm documentation](https://www.php.net/manual/en/install.fpm.configuration.php#user).
 
     * `group: string`
-      Pool worker operation ystem group. [Official php-fpm documentation](https://www.php.net/manual/en/install.fpm.configuration.php#group).
+      Pool worker operation system group. [Official php-fpm documentation](https://www.php.net/manual/en/install.fpm.configuration.php#group).
+
+    * `port: int`
+      Pool worker listen port. [Official php-fpm documentation](https://www.php.net/manual/en/install.fpm.configuration.php#listen).
 
     * `pm: dict`
       Pool process manager parameters.
@@ -108,6 +111,41 @@ Role Variables
 
 Example Playbook
 ----------------
+
+    - hosts: example_project:&example_project_stage
+      any_errors_fatal: "{{ any_errors_fatal | default(true) }}"
+      gather_facts: false
+      vars:
+        ansible_connection: local
+        ansible_become: no
+        ansible_distribution: Debian
+            
+      roles:
+        - name: gudron.php_fpm_pool
+          vars: 
+            php_version: 7.3
+            conf_file_path: /example/project/php-fpm/pool.d/sites-available/
+            pools_params:
+              example_pool_1:
+                port: 9011
+                user: example_user
+                group: example_user
+                slowlog: /path/to/slowlog/exmaple_pool_1.log
+                env_variables:
+                  - MYSQL_POOL1_WORKER_USER
+                  - MYSQL_POOL1_WORKER_PASSWORD
+
+              example_pool_2:
+                port: 9012
+                user: example_user_2
+                group: example_user_2
+                security:
+                  limit_extensions:
+                    - .php
+                    - .php7
+                env_variables:
+                  - MYSQL_POOL2_WORKER_USER
+                  - MYSQL_POOL2_WORKER_PASSWORD
 
 License
 -------
