@@ -97,7 +97,7 @@ Role Variables
       Enable the output decoration for workers output when `catch_workers_output` is enabled. [Official php-fpm documentation](https://www.php.net/manual/en/install.fpm.configuration.php#decorate-workers-output).
 
   * `pools_params: dict`
-    Dictionary contains parameters of PHP-FPM pool. By default, parameters from default_pools_params are inherited. 
+    Dictionary contains parameters of PHP-FPM pool. By default, parameters from `default_pools_params` are inherited. 
 
     * `env_variables: list`
       List of environment variables which will be passed to pool process.
@@ -105,7 +105,7 @@ Role Variables
   * `disabled_functions_params: list`
     List of default disabled functions. [Official php-fpm documentation](https://www.php.net/manual/en/ini.core.php#ini.disable-functions).
 
-    Supported variables: [defaults/main.yml](defaults/main.yml).
+  Supported variables: [defaults/main.yml](defaults/main.yml).
 
 Instalation
 -----------
