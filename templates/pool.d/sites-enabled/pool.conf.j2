@@ -31,7 +31,7 @@ ping.response = {{pool.ping.response}}
 {% if pool.catch_workers_output %}
 catch_workers_output = On
 decorate_workers_output = {{ pool.decorate_workers_output and 'On' or 'Off' }}
-{% endif %}}
+{% endif %}
 
 {{ 'Environment' | comment(decoration="; ") }}
 clear_env = {{ pool.clear_env}}
