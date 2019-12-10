@@ -1,7 +1,4 @@
 ---
-- debug:
-    msg: "{{ pool }}"
-
 - name: Prepare php-fpm pool.d config files
   template:
     src: "templates/pool.d/sites-enabled/pool.conf.j2"
