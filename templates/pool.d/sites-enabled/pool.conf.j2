@@ -28,6 +28,11 @@ security.limit_extensions = {{ pool.security.limit_extensions | join(' ')}}
 ping.path = /ping/{{ pool_alias }}
 ping.response = {{pool.ping.response}}
 
+{% if pool.catch_workers_output %}
+catch_workers_output = On
+decorate_workers_output = {{ pool.decorate_workers_output and 'On' or 'Off' }}
+{% endif %}}
+
 {{ 'Environment' | comment(decoration="; ") }}
 clear_env = {{ pool.clear_env}}
 env[HOSTNAME] = $HOSTNAME
@@ -35,6 +40,7 @@ env[PATH] = /usr/local/bin:/usr/bin:/bin
 env[TMP] = /tmp
 env[TMPDIR] = /tmp
 env[TEMP] = /tmp
+
 {% for env_variable in pool.env_variables | default([]) | flatten %}
 env[{{env_variable}}] = ${{env_variable}}
 {% endfor %}
