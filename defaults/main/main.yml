@@ -38,6 +38,7 @@ default_pools_params:
       - .phar
   request_terminate_timeout: 45s
   request_slowlog_timeout: 42s
+  slowlog: /var/log/php-fpm/slow.log
   rlimit_files: 1024
   clear_env: True
   catch_workers_output: False
@@ -71,6 +72,7 @@ pools_params:
     port: 9010
     user: app-worker
     group: app-worker
+    slowlog: /var/log/php-fpm/slow.log
     pm:
       strategy: dynamic
       max_children: 4

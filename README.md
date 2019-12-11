@@ -84,6 +84,9 @@ Role Variables
     * `request_slowlog_timeout: string`
       The timeout for serving a single request after which a PHP backtrace will be dumped to the `slowlog` file. [Official php-fpm documentation](https://www.php.net/manual/en/install.fpm.configuration.php#request-slowlog-timeout).
 
+    * `slowlog: string`
+      The log file for slow requests. Parameter will be processed only if `request_slowlog_timeout`not a zero. [Official php-fpm documentation](https://www.php.net/manual/en/install.fpm.configuration.php#slowlog).
+
     * `rlimit_files: int`
       Set open file descriptor rlimit for child processes in this pool. [Official php-fpm documentation](https://www.php.net/manual/en/install.fpm.configuration.php#rlimit-files).
 

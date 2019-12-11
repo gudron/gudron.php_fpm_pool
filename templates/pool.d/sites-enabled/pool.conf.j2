@@ -21,12 +21,16 @@ pm.status_path = /status/{{pool_alias}}
 process.priority = {{pool.process.priority}}
 process.dumpable = {{pool.process.dumpable}}
 
-
 rlimit_files = {{pool.rlimit_files}}
 security.limit_extensions = {{ pool.security.limit_extensions | join(' ')}}
 
 ping.path = /ping/{{ pool_alias }}
 ping.response = {{pool.ping.response}}
+
+{% if pool.request_slowlog_timeout != 0 %}}
+request_slowlog_timeout = {{ pool.request_slowlog_timeout }}
+slowlog = {{ pool.slowlog | default(php_slowlog_path) }}
+{% endif %}
 
 {% if pool.catch_workers_output %}
 catch_workers_output = On
