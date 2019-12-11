@@ -1,0 +1,10 @@
+---
+- name: Set if installed php facts
+  set_fact:
+    installed_prefix: "{{ lookup('pipe',php_config_path + ' --prefix') }}"
+  when: is_php_installed
+
+- name: Set if installed php facts
+  set_fact:
+    php_slowlog_path: "{{ installed_prefix + '/log/php-fpm.log.slow' }}"
+  when: is_php_installed

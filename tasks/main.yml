@@ -5,6 +5,7 @@
 - name: Inlcude tasks
   include_tasks: "{{ task_name }}"
   loop:
-    - prepare_pools.yaml
+    - set_facts.yml
+    - prepare_pools.yml
   loop_control:
     loop_var: task_name
