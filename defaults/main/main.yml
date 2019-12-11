@@ -72,7 +72,6 @@ pools_params:
     port: 9010
     user: app-worker
     group: app-worker
-    slowlog: /var/log/php-fpm/slow.log
     pm:
       strategy: dynamic
       max_children: 4
@@ -114,7 +113,7 @@ pools_params:
       dumpable: false
     request_terminate_timeout: 45s
     request_slowlog_timeout: 44s
-    slowlog: /path/to/slowlog/exmaple_pool_1.log
+    slowlog: /path/to/slowlog/exmaple_pool_2.log
     rlimit_files: 1024
     clear_env: true
     catch_workers_output: false
