@@ -21,7 +21,7 @@
 - name: Set process.dumpable available
   set_fact:
     dumpable_available: True
-  when: (php_short_version = '7.0' AND php_version | version('7.0.29'. '>=')) OR
+  when: (php_short_version = '7.0' AND php_version | version('7.0.29', '>=')) OR
         (php_short_version = '7.1' AND php_version | version('7.1.17'. '>=')) OR
-        (php_short_version = '7.2' AND php_version | version('7.2.5'. '>=')) OR
+        (php_short_version = '7.2' AND php_version | version('7.2.5', '>=')) OR
         (php_version | version('7.3'. '>='))
