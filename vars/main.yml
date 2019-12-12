@@ -5,3 +5,5 @@ compiled_conf_files_path: "{{ conf_file_path + php_conf_files_path}}"
 compiled_pools_conf_files_path: "{{ conf_file_path + php_pools_conf_files_path}}"
 
 is_php_installed: "{{ lookup('pipe','command -v php-config > /dev/null && echo True || echo False') | bool }}"
+
+dumpable_available: False

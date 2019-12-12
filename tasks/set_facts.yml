@@ -2,9 +2,26 @@
 - name: Set if installed php facts
   set_fact:
     installed_prefix: "{{ lookup('pipe',php_config_path + ' --prefix') }}"
+    installed_php_version: "{{ lookup('pipe',php_config_path + ' --version') }}"
   when: is_php_installed
 
 - name: Set if installed php facts
   set_fact:
     php_slowlog_path: "{{ installed_prefix + '/log/php-fpm.log.slow' }}"
   when: is_php_installed
+
+- name: Set php version
+  set_fact:
+    php_version: "{{ installed_php_version | default(php_version) }}"
+
+- name: Set php version
+  set_fact:
+    php_short_version: "{{ php_version.split('.')[0] }}.{{ php_version.split('.')[1] }}"
+
+- name: Set process.dumpable available
+  set_fact:
+    dumpable_available: True
+  when: (php_short_version = '7.0' AND php_version | version('7.0.29'. '>=')) OR
+        (php_short_version = '7.1' AND php_version | version('7.1.17'. '>=')) OR
+        (php_short_version = '7.2' AND php_version | version('7.2.5'. '>=')) OR
+        (php_version | version('7.3'. '>='))
