@@ -19,7 +19,9 @@ pm.status_path = /status/{{pool_alias}}
 
 {{ 'Proccess' | comment(decoration="; ") }}
 process.priority = {{pool.process.priority}}
-process.dumpable = {{pool.process.dumpable}}
+{% if dumpable_available %}
+process.dumpable = {{pool.process.dumpable and 'On' or 'Off'}}
+{% endif %}
 
 rlimit_files = {{pool.rlimit_files}}
 security.limit_extensions = {{ pool.security.limit_extensions | join(' ')}}
