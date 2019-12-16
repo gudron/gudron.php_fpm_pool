@@ -6,6 +6,7 @@
   include_tasks: "{{ task_name }}"
   loop:
     - set_facts.yml
+    - assertion.yml
     - prepare_pools.yml
   loop_control:
     loop_var: task_name
