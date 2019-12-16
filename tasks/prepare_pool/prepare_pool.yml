@@ -1,4 +1,7 @@
 ---
+- name: Inlcude prepare pool task
+  include_tasks: ./assertion.yml
+
 - name: Prepare php-fpm pool.d config files
   template:
     src: "templates/pool.d/sites-enabled/pool.conf.j2"

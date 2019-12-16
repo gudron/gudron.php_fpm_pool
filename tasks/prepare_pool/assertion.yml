@@ -1,8 +1,5 @@
 ---
-- name: Inlcude prepare pool task
-  include_tasks: assertion.yml
-
 - name: PM values check
   assert:
-    that: pool.pm.strategy not in ['static', 'ondemand', 'dynamic']
+    that: pool.pm.strategy in ['static', 'ondemand', 'dynamic']
     msg: "'pm.strategy' must be in ['static', 'ondemand', 'dynamic']"
