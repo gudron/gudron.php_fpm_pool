@@ -28,7 +28,7 @@ Role Variables
       Pool process manager parameters.
 
       * `strategy: string`
-        Strategy for creating pool processes. [Official php-fpm documentation](https://www.php.net/manual/en/install.fpm.configuration.php#pm).
+        Strategy for creating pool processes. Allowed values `static`, `ondemand`, `dynamic`, [Official php-fpm documentation](https://www.php.net/manual/en/install.fpm.configuration.php#pm).
 
       * `max_children: int`
         Then maximum number of child processes. [Official php-fpm documentation](https://www.php.net/manual/en/install.fpm.configuration.php#pm.max-children).

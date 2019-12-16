@@ -10,11 +10,17 @@ request_terminate_timeout = {{pool.request_terminate_timeout}}
 
 {{ 'Proccess manager' | comment(decoration="; ") }}
 pm = {{pool.pm.strategy}}
+{% if pool.pm.strategy in ['static', 'dynamic'] %}
 pm.max_children = {{pool.pm.max_children}}
+{% endif %}
+{% if pool.pm.strategy in ['ondemand', 'dynamic'] %}
 pm.start_servers = {{pool.pm.start_servers}}
+{% endif %}
+{% if pool.pm.strategy == 'dynamic' %}
 pm.min_spare_servers = {{pool.pm.min_spare_servers}}
 pm.max_spare_servers = {{pool.pm.max_spare_servers}}
 pm.max_requests = {{pool.pm.max_requests}}
+{% endif %}
 pm.status_path = /status/{{pool_alias}}
 
 {{ 'Proccess' | comment(decoration="; ") }}
