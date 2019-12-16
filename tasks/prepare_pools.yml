@@ -12,7 +12,7 @@
     mode: "u=r,g=r"
 
 - name: Inlcude prepare pool task
-  include_tasks: prepare_pool/prepare_pool.yaml
+  include_tasks: prepare_pool/prepare_pool.yml
   vars:
     pool: "{{ default_pools_params | combine(pool_params.value) }}"
     pool_alias: "{{ pool_params.key }}"

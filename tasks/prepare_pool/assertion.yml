@@ -1,0 +1,5 @@
+---
+- name: PM values check
+  assert:
+    that: pool.pm.strategy in ['static', 'ondemand', 'dynamic']
+    msg: "'pm.strategy' must be in ['static', 'ondemand', 'dynamic']"
