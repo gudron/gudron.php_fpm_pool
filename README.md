@@ -64,13 +64,13 @@ Role Variables
       Dictionary of `php_admin_value` PHP settings. PHP settings passed with `php_admin_value` will overwrite their previous value. Passed keys and values will be renders "as is".
 
     * `admin_flags: dict`
-      Dictionary of `php_admin_flag` PHP settings. PHP settings passed with `php_admin_flag` will overwrite their previous value. Passed keys and values will be renders "as is". Passed values must contains only "on" or "off".
+      Dictionary of `php_admin_flag` PHP settings. PHP settings passed with `php_admin_flag` will overwrite their previous value. Passed keys and values will be renders "as is". Passed values must contains only True or False.
 
     * `val: dict`
       Dictionary of `php_value` PHP settings. PHP settings passed with `php_value` will overwrite their previous value. Passed keys and values will be renders "as is".
 
     * `flags: dict`
-      Dictionary of `php_flag` PHP settings. PHP settings passed with `php_flag` will overwrite their previous value. Passed keys and values will be renders "as is". Passed values must contains only "on" or "off".
+      Dictionary of `php_flag` PHP settings. PHP settings passed with `php_flag` will overwrite their previous value. Passed keys and values will be renders "as is". Passed values must contains only True or False.
 
     * `ping: dict`
       Dictionary of ping parameters.
