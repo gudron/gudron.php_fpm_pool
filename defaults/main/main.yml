@@ -44,12 +44,12 @@ default_pools_params:
   catch_workers_output: False
   decorate_workers_output: True
   admin_flags:
-    log_errors: "On"
-    short_open_tag: "On"
-    expose_php: "Off"
+    log_errors: True
+    short_open_tag: True
+    expose_php: True
   flags:
-    log_errors: "On"
-    display_startup_errors: "Off"
+    log_errors: True
+    display_startup_errors: False
   admin_values:
     memory_limit: 160mb
     post_max_size: 32mb

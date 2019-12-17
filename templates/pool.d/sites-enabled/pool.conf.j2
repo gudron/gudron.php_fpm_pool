@@ -59,12 +59,12 @@ env[{{env_variable}}] = ${{env_variable}}
 
 {{ 'Admin flags' | comment(decoration="; ") }}
 {% for flag_name, flag_value in pool.admin_flags.items() %}
-php_admin_flag[{{flag_name}}] = {{flag_value}}
+php_admin_flag[{{flag_name}}] = {{flag_value and 'On' or 'Off'}}
 {% endfor %}
 
 {{ 'Flags' | comment(decoration="; ") }}
 {% for flag_name, flag_value in pool.flags.items() %}
-php_flag[{{flag_name}}] = {{flag_value}}
+php_flag[{{flag_name}}] = {{flag_value and 'On' or 'Off' }}
 {% endfor %}
 
 {{ 'Admin values' | comment(decoration="; ") }}
