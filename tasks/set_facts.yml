@@ -14,12 +14,6 @@
   set_fact:
     real_php_version: "{{ installed_php_version is defined and php_version_param }}"
 
-- debug:
-    msg: "{{ real_php_version }}"
-
-- debug:
-    msg: "{{ php_version_param }}"
-
 - name: Set php version
   set_fact:
     php_short_version: "{{ real_php_version.split('.')[0] }}.{{ real_php_version.split('.')[1] }}"
