@@ -10,9 +10,9 @@ disabled_functions_params:
   - parse_ini_file
   - show_source
 
-php_version: 7.3
+php_version_param: 7.3
 
-conf_file_path: /any/path/to/vhost/config/files/directory/
+conf_file_path_param: /any/path/to/vhost/config/files/directory/
 
 default_pools_params:
   user: app-worker

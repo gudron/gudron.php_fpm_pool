@@ -6,10 +6,10 @@ Role for creating php-fpm pools config files.
 Role Variables
 --------------
 
-  * `php_version: string`
+  * `php_version_param: string`
     The php version for which you want to generate the configuration.
 
-  * `conf_file_path: string`
+  * `conf_file_path_param: string`
     The path to the directory where you want to save the configuration files.
 
   * `default_pools_params: dict`
