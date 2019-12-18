@@ -24,7 +24,7 @@ pm.max_requests = {{pool.pm.max_requests}}
 pm.status_path = /status/{{pool_alias}}
 
 {{ 'Proccess' | comment(decoration="; ") }}
-{% if pool.process.priority %}
+{% if pool.process.priority is defined %}
 process.priority = {{pool.process.priority}}
 {% endif %}
 {% if dumpable_available %}
