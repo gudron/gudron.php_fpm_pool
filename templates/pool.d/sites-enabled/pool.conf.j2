@@ -46,16 +46,18 @@ decorate_workers_output = {{ pool.decorate_workers_output and 'On' or 'Off' }}
 {% endif %}
 
 {{ 'Environment' | comment(decoration="; ") }}
-clear_env = {{ pool.clear_env}}
+clear_env = {{ pool.clear_env and 'On' or 'Off' }}
 env[HOSTNAME] = $HOSTNAME
 env[PATH] = /usr/local/bin:/usr/bin:/bin
 env[TMP] = /tmp
 env[TMPDIR] = /tmp
 env[TEMP] = /tmp
 
+{% if pool.clear_env %}
 {% for env_variable in pool.env_variables | default([]) | flatten %}
 env[{{env_variable}}] = ${{env_variable}}
 {% endfor %}
+{% endif %}
 
 {{ 'Admin flags' | comment(decoration="; ") }}
 {% for flag_name, flag_value in pool.admin_flags.items() %}

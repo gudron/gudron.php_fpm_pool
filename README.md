@@ -103,7 +103,7 @@ Role Variables
     Dictionary contains parameters of PHP-FPM pool. By default, parameters from `default_pools_params` are inherited. 
 
     * `env_variables: list`
-      List of environment variables which will be passed to pool process.
+      List of environment variables which will be passed to pool process. Passed variables will be rendered if `clear_env` parameter set to True.
 
   * `disabled_functions_params: list`
     List of default disabled functions. [Official php-fpm documentation](https://www.php.net/manual/en/ini.core.php#ini.disable-functions).
