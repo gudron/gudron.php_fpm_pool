@@ -43,6 +43,8 @@ default_pools_params:
   clear_env: True
   catch_workers_output: False
   decorate_workers_output: True
+  listen:
+    address: 0.0.0.0
   admin_flags:
     log_errors: True
     short_open_tag: True
@@ -69,7 +71,9 @@ default_pools_params:
 pools_params:
   exmaple_pool_1:
     template_path: "/any/path/to/exmaple_pool_1/template/path/tpl.conf.j2"
-    port: 9010
+    listen:
+      address: 0.0.0.0
+      port: 9010
     user: app-worker
     group: app-worker
     pm:
@@ -104,7 +108,8 @@ pools_params:
   exmaple_pool_2:
     address: "{{ project_name }}-php-backend"
     template_path: "/any/path/to/exmaple_pool_2/template/path/tpl.conf.j2"
-    port: 9011
+    listen:
+      address: /path/to/socket.file
     pm:
       strategy: static
       max_children: 4

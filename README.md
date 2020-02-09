@@ -21,8 +21,17 @@ Role Variables
     * `group: string`
       Pool worker operation system group. [Official php-fpm documentation](https://www.php.net/manual/en/install.fpm.configuration.php#group).
 
-    * `port: int`
-      Pool worker listen port. [Official php-fpm documentation](https://www.php.net/manual/en/install.fpm.configuration.php#listen).
+    * `listen: dict`
+      Pool listen parameters. [Official php-fpm documentation](https://www.php.net/manual/en/install.fpm.configuration.php#listen).
+
+      * `socket: string`
+        Pool worker listen unix socket file path. The socket option has the highest priority. [Official php-fpm documentation](https://www.php.net/manual/en/install.fpm.configuration.php#listen).
+
+      * `address: string`
+        Pool worker listen address. If the address parameter is not specified, the port will be used, the worker will listen on all available network addresses. [Official php-fpm documentation](https://www.php.net/manual/en/install.fpm.configuration.php#listen).
+
+      * `port: int`
+        Pool worker listen port. [Official php-fpm documentation](https://www.php.net/manual/en/install.fpm.configuration.php#listen).
 
     * `pm: dict`
       Pool process manager parameters.
