@@ -3,9 +3,9 @@
 [{{pool_alias}}]
 {% if pool.listen.socket is defined %}
 listen = {{ pool.listen.socket }}
-{% elif pool.listen.address is defined AND pool.listen.port is defined %}
+{% elif (pool.listen.address is defined) and (pool.listen.port is defined) %}
 listen = {{ pool.listen.address }}:{{ pool.listen.port }}
-{% elif pool.listen.address is not defined AND pool.listen.port is defined %}
+{% elif (pool.listen.address is not defined) and (pool.listen.port is defined) %}
 listen = {{ pool.listen.port }}
 {% endif %}
 
