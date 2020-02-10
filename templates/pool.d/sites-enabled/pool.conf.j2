@@ -1,7 +1,13 @@
 {{ ansible_managed | comment(decoration="; ") }}
 
 [{{pool_alias}}]
-listen = 0.0.0.0:{{pool.port}}
+{% if pool.listen.socket is defined %}
+listen = {{ pool.listen.socket }}
+{% elif (pool.listen.address is defined) and (pool.listen.port is defined) %}
+listen = {{ pool.listen.address }}:{{ pool.listen.port }}
+{% elif (pool.listen.address is not defined) and (pool.listen.port is defined) %}
+listen = {{ pool.listen.port }}
+{% endif %}
 
 user = {{pool.user}}
 group = {{pool.group}}
@@ -11,27 +17,27 @@ request_terminate_timeout = {{pool.request_terminate_timeout}}
 {{ 'Proccess manager' | comment(decoration="; ") }}
 pm = {{pool.pm.strategy}}
 {% if pool.pm.strategy in ['static', 'dynamic'] %}
-pm.max_children = {{pool.pm.max_children}}
+pm.max_children = {{ pool.pm.max_children }}
 {% endif %}
 {% if pool.pm.strategy in ['ondemand', 'dynamic'] %}
-pm.start_servers = {{pool.pm.start_servers}}
+pm.start_servers = {{ pool.pm.start_servers }}
 {% endif %}
 {% if pool.pm.strategy == 'dynamic' %}
-pm.min_spare_servers = {{pool.pm.min_spare_servers}}
-pm.max_spare_servers = {{pool.pm.max_spare_servers}}
-pm.max_requests = {{pool.pm.max_requests}}
+pm.min_spare_servers = {{ pool.pm.min_spare_servers }}
+pm.max_spare_servers = {{ pool.pm.max_spare_servers }}
+pm.max_requests = {{ pool.pm.max_requests }}
 {% endif %}
 pm.status_path = /status/{{pool_alias}}
 
 {{ 'Proccess' | comment(decoration="; ") }}
 {% if pool.process.priority is defined %}
-process.priority = {{pool.process.priority}}
+process.priority = {{ pool.process.priority }}
 {% endif %}
 {% if dumpable_available %}
-process.dumpable = {{pool.process.dumpable and 'On' or 'Off'}}
+process.dumpable = {{ pool.process.dumpable and 'On' or 'Off' }}
 {% endif %}
 
-rlimit_files = {{pool.rlimit_files}}
+rlimit_files = {{ pool.rlimit_files }}
 security.limit_extensions = {{ pool.security.limit_extensions | join(' ')}}
 
 ping.path = /ping/{{ pool_alias }}
