@@ -40,8 +40,17 @@ process.dumpable = {{ pool.process.dumpable and 'On' or 'Off' }}
 rlimit_files = {{ pool.rlimit_files }}
 security.limit_extensions = {{ pool.security.limit_extensions | join(' ')}}
 
+{% if pool.ping.path is defined %}
+ping.path = {{ pool.ping.path }}
+{% else %}
 ping.path = /ping/{{ pool_alias }}
-ping.response = {{pool.ping.response}}
+{% endif -%}
+
+{% if pool.ping.response is defined %}
+ping.response = {{ pool.ping.response }}
+{% else %}
+ping.response = pong
+{% endif %}
 
 {% if pool.request_slowlog_timeout != 0 %}
 request_slowlog_timeout = {{ pool.request_slowlog_timeout }}
@@ -51,7 +60,7 @@ slowlog = {{ pool.slowlog | default(php_slowlog_path) }}
 {% if pool.catch_workers_output %}
 catch_workers_output = On
 decorate_workers_output = {{ pool.decorate_workers_output and 'On' or 'Off' }}
-{% endif %}
+{% endif -%}
 
 {{ 'Environment' | comment(decoration="; ") }}
 clear_env = {{ pool.clear_env and 'On' or 'Off' }}
@@ -69,20 +78,20 @@ env[{{env_variable}}] = ${{env_variable}}
 
 {{ 'Admin flags' | comment(decoration="; ") }}
 {% for flag_name, flag_value in pool.admin_flags.items() %}
-php_admin_flag[{{flag_name}}] = {{flag_value and 'On' or 'Off'}}
+php_admin_flag[{{flag_name}}] = {{ flag_value and 'On' or 'Off' }}
 {% endfor %}
 
 {{ 'Flags' | comment(decoration="; ") }}
 {% for flag_name, flag_value in pool.flags.items() %}
-php_flag[{{flag_name}}] = {{flag_value and 'On' or 'Off' }}
+php_flag[{{flag_name}}] = {{ flag_value and 'On' or 'Off' }}
 {% endfor %}
 
 {{ 'Admin values' | comment(decoration="; ") }}
 {% for value_name, value in pool.admin_values.items() %}
-php_admin_value[{{value_name}}] = {{value}}
+php_admin_value[{{value_name}}] = {{ value }}
 {% endfor %}
 
 {{ 'Values' | comment(decoration="; ") }}
 {% for value_name, value in pool.val.items() %}
-php_value[{{value_name}}] = {{value}}
+php_value[{{value_name}}] = {{ value }}
 {% endfor %}

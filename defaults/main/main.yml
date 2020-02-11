@@ -101,6 +101,9 @@ pools_params:
     clear_env: true
     catch_workers_output: false
     decorate_workers_output: true
+    ping:
+      path: /custom/ping/path
+      response: custom_pong
     env_variables:
       - MYSQL_POOL1_WORKER_USER
       - MYSQL_POOL1_WORKER_PASSWORD
