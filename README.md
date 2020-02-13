@@ -27,6 +27,9 @@ Role Variables
       * `socket: string`
         Pool worker listen unix socket file path. The socket option has the highest priority. [Official php-fpm documentation](https://www.php.net/manual/en/install.fpm.configuration.php#listen).
 
+      * `allowed_clients: string`
+        List of IPv4 addresses of FastCGI clients which are allowed to connect. [Official php-fpm documentation](https://www.php.net/manual/en/install.fpm.configuration.php#listen-allowed-clients).
+
       * `address: string`
         Pool worker listen address. If the address parameter is not specified, the port will be used, the worker will listen on all available network addresses. [Official php-fpm documentation](https://www.php.net/manual/en/install.fpm.configuration.php#listen).
 

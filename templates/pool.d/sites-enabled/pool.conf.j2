@@ -7,10 +7,15 @@ listen = {{ pool.listen.socket }}
 listen = {{ pool.listen.address }}:{{ pool.listen.port }}
 {% elif (pool.listen.address is not defined) and (pool.listen.port is defined) %}
 listen = {{ pool.listen.port }}
+{% endif -%}
+
+{% if pool.listen.address is defined %}
+{% if (pool.listen.allowed_clients is defined) and (pool.listen.allowed_clients|length > 0) %}
+listen.allowed_clients = {{ pool.listen.allowed_clients|join(',') }}
 {% endif %}
 
-user = {{pool.user}}
-group = {{pool.group}}
+user = {{ pool.user }}
+group = {{ pool.group }}
 
 request_terminate_timeout = {{pool.request_terminate_timeout}}
 

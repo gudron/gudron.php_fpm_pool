@@ -74,6 +74,9 @@ pools_params:
     listen:
       address: 0.0.0.0
       port: 9010
+      allowed_clients:
+        - 192.168.0.11
+        - 192.168.0.12
     user: app-worker
     group: app-worker
     pm:
@@ -112,7 +115,9 @@ pools_params:
     address: "{{ project_name }}-php-backend"
     template_path: "/any/path/to/exmaple_pool_2/template/path/tpl.conf.j2"
     listen:
-      address: /path/to/socket.file
+      socket: /path/to/socket.file
+      owner: socket_user
+      group: socket_group
     pm:
       strategy: static
       max_children: 4
