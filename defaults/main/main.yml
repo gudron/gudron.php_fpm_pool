@@ -118,6 +118,7 @@ pools_params:
       socket: /path/to/socket.file
       owner: socket_user
       group: socket_group
+      mode: 0660
     pm:
       strategy: static
       max_children: 4
