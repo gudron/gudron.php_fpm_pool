@@ -1,6 +1,7 @@
 {{ ansible_managed | comment(decoration="; ") }}
 
 [{{pool_alias}}]
+{{ 'Listen settings' | comment(decoration="; ") }}
 {% if pool.listen.socket is defined %}
 listen = {{ pool.listen.socket }}
 {% elif (pool.listen.address is defined) and (pool.listen.port is defined) %}
@@ -9,17 +10,34 @@ listen = {{ pool.listen.address }}:{{ pool.listen.port }}
 listen = {{ pool.listen.port }}
 {% endif -%}
 
+{% if pool.listen.socket is defined %}
+{% if pool.listen.owner is defined %}
+listen.owner = {{ pool.listen.owner }}
+{% endif -%}
+
+{% if pool.listen.group is defined %}
+listen.group = {{ pool.listen.group }}
+{% endif -%}
+
+{% if pool.listen.mode is defined %}
+listen.mode = {{ pool.listen.mode }}
+{% endif %}
+{% endif -%}
+
 {% if pool.listen.address is defined %}
 {% if (pool.listen.allowed_clients is defined) and (pool.listen.allowed_clients|length > 0) %}
 listen.allowed_clients = {{ pool.listen.allowed_clients|join(',') }}
 {% endif %}
+{% endif %}
 
+{{ 'Unix user/group settings' | comment(decoration="; ") }}
 user = {{ pool.user }}
 group = {{ pool.group }}
 
-request_terminate_timeout = {{pool.request_terminate_timeout}}
+{{ 'Request settings' | comment(decoration="; ") }}
+request_terminate_timeout = {{ pool.request_terminate_timeout }}
 
-{{ 'Proccess manager' | comment(decoration="; ") }}
+{{ 'Proccess manager settings' | comment(decoration="; ") }}
 pm = {{pool.pm.strategy}}
 {% if pool.pm.strategy in ['static', 'dynamic'] %}
 pm.max_children = {{ pool.pm.max_children }}
@@ -34,7 +52,7 @@ pm.max_requests = {{ pool.pm.max_requests }}
 {% endif %}
 pm.status_path = /status/{{pool_alias}}
 
-{{ 'Proccess' | comment(decoration="; ") }}
+{{ 'Proccess settings' | comment(decoration="; ") }}
 {% if pool.process.priority is defined %}
 process.priority = {{ pool.process.priority }}
 {% endif %}

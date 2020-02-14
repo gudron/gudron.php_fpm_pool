@@ -27,7 +27,16 @@ Role Variables
       * `socket: string`
         Pool worker listen unix socket file path. The socket option has the highest priority. [Official php-fpm documentation](https://www.php.net/manual/en/install.fpm.configuration.php#listen).
 
-      * `allowed_clients: string`
+      * `owner: string`
+        Set permissions for unix socket, if one is used. In Linux, read/write permissions must be set in order to allow connections from a web server. Many BSD-derived systems allow connections regardless of permissions. [Official php-fpm documentation](https://www.php.net/manual/en/install.fpm.configuration.php#listen-owner).
+
+      * `group: string`
+        Set group permissions for unix socket, if one is used.[Official php-fpm documentation](https://www.php.net/manual/en/install.fpm.configuration.php#listen-group).
+
+      * `mode: int`
+        Set file access mode permissions for unix socket, if one is used.[Official php-fpm documentation](https://www.php.net/manual/en/install.fpm.configuration.php#listen-mode).
+
+      * `allowed_clients: list`
         List of IPv4 addresses of FastCGI clients which are allowed to connect. [Official php-fpm documentation](https://www.php.net/manual/en/install.fpm.configuration.php#listen-allowed-clients).
 
       * `address: string`
