@@ -1,8 +1,11 @@
 ---
-php_pools_conf_files_path: "{{ php_conf_files_path }}sites-enabled/"
+php_pools_conf_files_path: "{{ php_conf_files_path }}/pools/sites-enabled/"
 
 compiled_conf_files_path: "{{ conf_file_path_param + php_conf_files_path }}"
 compiled_pools_conf_files_path: "{{ conf_file_path_param + php_pools_conf_files_path}}"
+
+php_pools_conf_files_path: "{{ php_conf_files_path }}pool.d/"
+php_pools_sites_anbled_conf_files_path: "{{ php_pools_conf_files_path }}sites-enabled"
 
 is_php_installed: "{{ lookup('pipe','command -v php-config > /dev/null && echo True || echo False') | bool }}"
 
