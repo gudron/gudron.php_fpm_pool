@@ -6,7 +6,7 @@ listen = {{ pool.listen.socket }}
 {% elif (pool.listen.address is defined) and (pool.listen.port is defined) %}
 listen = {{ pool.listen.address }}:{{ pool.listen.port }}
 {% elif (pool.listen.address is not defined) and (pool.listen.port is defined) %}
-listen = {{ pool.listen.port }}
+listen = 0.0.0.0:{{ pool.listen.port }}
 {% endif %}
 
 user = {{pool.user}}
